@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bleaf-IT</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/full-slider.css" rel="stylesheet">
+
+    <!-- Animate.css library -->
+    <link href="css/animate.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        
+        .carousel-control{ display: none;}
+        nav.navbar.navbar-inverse{ background-color: rgba(0,0,0,0); border: none;}
+        ul.nav.navbar-nav li { border-bottom: 1px solid #9d9d9d; margin-right: 10px; }
+
+        /* Animation delays */
+        .carousel-caption h3:first-child {
+            -webkit-animation-delay: 1s;
+            animation-delay: 1s;
+        }
+        .carousel-caption h3:nth-child(2) {
+            -webkit-animation-delay: 2s;
+            animation-delay: 2s;
+        }
+        .carousel-caption button {
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s;
+        }
+
+    </style>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background:linear-gradient(to left, #5E1E5A, rgba(0,0,0,1)); padding:10px; color:#fff;">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="report.html">View Report</a>
+                    </li>
+                    <li>
+                        <a href="add_shops.html">Add Shops</a>
+                    </li>
+                    <li>
+                        <a href="generate.html">Generate QR codes</a>
+                    </li>
+                    <li>
+                        <a href="assign.html">Assign QR</a>
+                    </li>
+                    <li>
+                        <a href="login.html">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <style type="text/css">
+        .container .images p{ margin: 50px; width: 200px; float: left; font-size: 20px; }
+    </style>
+    <!-- Page Content -->
+    <section class="container col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 images" style="border:1px solid #eee; border-radius:10px; margin-top:100px; min-height:200px; height:auto">
+            <img src="images/report.png" style="float:left; width:200px">
+            <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 images">View Detailed Reports On QR codes and customers</p>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 images" style="border:1px solid #eee; border-radius:10px; min-height:200px; height:auto; margin-top:20px">
+            <img src="images/qr.png" style="float:right; width:200px">
+            <p style="float:right">Generate QR codes on the fly</p>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 images" style="border:1px solid #eee; border-radius:10px; min-height:200px; height:auto; margin-top:20px">
+            <img src="images/Shopping-Cart-Icons35.png" style="float:left; width:200px">
+            <p>Add shops to the system</p>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 images" style="border:1px solid #eee; border-radius:10px; min-height:200px; height:auto; margin-top:20px">
+            <img src="images/checklist-icon-following-24.png" style="float:right; width:200px">
+            <p style="float:right">Assign QR codes to shops from the comfort of your phone</p>
+        </div>
+
+    </section>
+    <!-- /.container -->
+
+
+    
+
+    <!-- Footer -->
+    <footer style="padding:20px 50px; background:linear-gradient(to left, #5E1E5A, rgba(0,0,0,1)); margin-bottom:0; color:#fff; float: left; width: 100%;">
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; FlowerCard 2017</p>
+            </div>
+        </div>
+        <!-- /.row -->
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Demo scripts -->
+    <script src="js/demo.js"></script>
+
+    <script type="text/javascript">
+        $("section").css("min-height", $(window).innerHeight());
+    </script>
+
+</body>
+
+</html>
