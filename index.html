@@ -11,36 +11,9 @@
 
     <title>Bleaf-IT</title>
 
-    <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/full-slider.css" rel="stylesheet">
-
-    <!-- Animate.css library -->
     <link href="css/animate.min.css" rel="stylesheet">
 
-    <style type="text/css">
-        
-        .carousel-control{ display: none;}
-        nav.navbar.navbar-inverse{ background-color: rgba(0,0,0,0); border: none;}
-        ul.nav.navbar-nav li { border-bottom: 1px solid #9d9d9d; margin-right: 10px; }
-
-        /* Animation delays */
-        .carousel-caption h3:first-child {
-            -webkit-animation-delay: 1s;
-            animation-delay: 1s;
-        }
-        .carousel-caption h3:nth-child(2) {
-            -webkit-animation-delay: 2s;
-            animation-delay: 2s;
-        }
-        .carousel-caption button {
-            -webkit-animation-delay: 3s;
-            animation-delay: 3s;
-        }
-
-    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -48,12 +21,46 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        
+        $(document).ready(function(){
+
+            //display images once they are all loaded
+            var container = $(".container");
+            var menu = container.find('img');
+            
+            var loaded = 0;
+                    
+            menu.load(function(){
+                loaded++;
+
+                if(menu.length == loaded){
+                    $('.images').removeClass('resting_menu');
+                    //$($(".loading-gif")[0]).hide();
+                }
+                        
+            });
+
+
+            $.post("http://tag4sapiflower.bleafit.ug/Service1.svc", {name : "Authenticate"}, 
+            function(returned){
+
+                console.log(returned);
+                
+            }, "json"); 
+
+        });
+
+    </script>
+
 </head>
 
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background:linear-gradient(to left, #5E1E5A, rgba(0,0,0,1)); padding:10px; color:#fff;">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background:linear-gradient(to left, #5E1E5A, rgba(0,0,0,1)); padding:10px; color:#fff; opacity:0.9">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -72,13 +79,13 @@
                         <a href="report.html">View Report</a>
                     </li>
                     <li>
-                        <a href="add_shops.html">Add Shops</a>
+                        <a href="#" data-toggle="modal" data-target="#add_modal">Add Shops</a>
                     </li>
                     <li>
-                        <a href="generate.html">Generate QR codes</a>
+                        <a href="#" data-toggle="modal" data-target="#generate_modal">Generate QR codes</a>
                     </li>
                     <li>
-                        <a href="assign.html">Assign QR</a>
+                        <a href="#" data-toggle="modal" data-target="#assign_modal">Assign QR</a>
                     </li>
                     <li>
                         <a href="login.html">Logout</a>
@@ -91,61 +98,171 @@
     </nav>
 
     <style type="text/css">
+        
+        body{     background: url(images/bg.png); }
         .container .images p{ margin: 50px; width: 200px; float: left; font-size: 20px; }
+        .images { border:1px solid #eee; border-radius:10px; min-height:200px; height: 390px; margin-top: 10px; cursor: pointer; color: #000; transition-duration:2s; }
+        .images img { float:left; width:200px }
+        .resting_menu{ -webkit-transform: rotateY(90deg); /* Safari */ transform: rotateY(90deg); opacity: 0; }
+        .well{ background-color: #fefefe; opacity: 0.8; }
+
     </style>
+
+    <hr style="float: left; margin: 0; margin-top: 100px; width: 100%; border: none "></hr>
+
     <!-- Page Content -->
     <section class="container col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 images" style="border:1px solid #eee; border-radius:10px; margin-top:100px; min-height:200px; height:auto">
-            <img src="images/report.png" style="float:left; width:200px">
-            <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 images">View Detailed Reports On QR codes and customers</p>
-        </div>
+        <a href="report.html" class="images resting_menu well well-sm col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-6 col-sm-offset-4 col-xs-12" style="float:left">
+            <div id="report">
+                <img src="images/report.png">
+                <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12">View Detailed Reports On QR codes and customers</p>
+            </div>
+        </a>
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 images" style="border:1px solid #eee; border-radius:10px; min-height:200px; height:auto; margin-top:20px">
-            <img src="images/qr.png" style="float:right; width:200px">
+        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-6 col-sm-offset-4 col-xs-12 images resting_menu well well-sm" data-toggle="modal" data-target="#generate_modal" id="generate">
+            <img src="images/qr.png">
             <p style="float:right">Generate QR codes on the fly</p>
         </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 images" style="border:1px solid #eee; border-radius:10px; min-height:200px; height:auto; margin-top:20px">
-            <img src="images/Shopping-Cart-Icons35.png" style="float:left; width:200px">
+        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-6 col-sm-offset-4 col-xs-12 images resting_menu well well-sm" data-toggle="modal" data-target="#add_modal" id="add_shops">
+            <img src="images/Shopping-Cart-Icons35.png">
             <p>Add shops to the system</p>
         </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 images" style="border:1px solid #eee; border-radius:10px; min-height:200px; height:auto; margin-top:20px">
-            <img src="images/checklist-icon-following-24.png" style="float:right; width:200px">
+        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-6 col-sm-offset-4 col-xs-12 images resting_menu well well-sm" data-toggle="modal" data-target="#assign_modal" id="assign">
+            <img src="images/checklist-icon-following-24.png">
             <p style="float:right">Assign QR codes to shops from the comfort of your phone</p>
         </div>
 
     </section>
     <!-- /.container -->
 
+    <!-- Modals -->
+    <div id="generate_modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
 
-    
+        <!-- Modal content-->
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+          
+          <div class="modal-body">
+            <form role="form">
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd">
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div id="add_modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+          
+          <div class="modal-body">
+            <form role="form">
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd">
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div id="assign_modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+
+          <div class="modal-body">
+            <form role="form">
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd">
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <!-- Modals -->
 
     <!-- Footer -->
     <footer style="padding:20px 50px; background:linear-gradient(to left, #5E1E5A, rgba(0,0,0,1)); margin-bottom:0; color:#fff; float: left; width: 100%;">
-        <hr>
-        <div class="row">
+        <hr class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-xs-offset-1">
+        <div class="row col-lg-10 col-md-10 col-sm-10 col-xs-10 col-xs-offset-1">
             <div class="col-lg-12">
-                <p>Copyright &copy; FlowerCard 2017</p>
+                <p style="text-align:center">Copyright &copy; FlowerCard 2017</p>
             </div>
         </div>
         <!-- /.row -->
     </footer>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Demo scripts -->
-    <script src="js/demo.js"></script>
-
-    <script type="text/javascript">
-        $("section").css("min-height", $(window).innerHeight());
-    </script>
-
+    
 </body>
 
 </html>
